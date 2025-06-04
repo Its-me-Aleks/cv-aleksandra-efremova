@@ -2,14 +2,12 @@ import React, { useEffect, useRef } from "react";
 
 interface IridescenceProps {
   color: [number, number, number];
-  mouseReact: boolean;
   amplitude: number;
   speed: number;
 }
 
 const Iridescence: React.FC<IridescenceProps> = ({
   color,
-  mouseReact,
   amplitude,
   speed,
 }) => {
