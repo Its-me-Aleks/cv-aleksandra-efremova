@@ -4,7 +4,7 @@ import profilePicture from "../assets/profile-picture.jpg";
 
 export const Header = () => {
   return (
-    <header className="bg-primary-700 text-white py-16">
+    <header className="bg-gradient-to-b from-primary-700 via-primary-100 to-white text-primary-700 py-16">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center">
           <div className="mb-8">
@@ -19,7 +19,7 @@ export const Header = () => {
           <div className="flex justify-center space-x-4 mb-6">
             <a
               href="mailto:efremova_aleksandra@yahoo.com"
-              className="hover:text-primary-300"
+              className="hover:text-primary-500"
             >
               <FaEnvelope className="w-6 h-6" />
             </a>
@@ -27,7 +27,7 @@ export const Header = () => {
               href="https://github.com/yourusername"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary-300"
+              className="hover:text-primary-500"
             >
               <FaGithub className="w-6 h-6" />
             </a>
@@ -35,7 +35,7 @@ export const Header = () => {
               href="https://www.linkedin.com/in/aleksandra-efremova-aleks/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary-300"
+              className="hover:text-primary-500"
             >
               <FaLinkedin className="w-6 h-6" />
             </a>
