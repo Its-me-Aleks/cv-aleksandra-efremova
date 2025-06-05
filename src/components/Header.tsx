@@ -24,7 +24,7 @@ export const Header = () => {
               <FaEnvelope className="w-6 h-6" />
             </a>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/Its-me-Aleks"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary-500"
