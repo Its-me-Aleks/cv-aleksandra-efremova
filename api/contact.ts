@@ -58,6 +58,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     });
 
+    // Validate required fields
+    const requiredFields = ["name", "email", "subject", "message"];
+    const missingFields = requiredFields.filter(
+      (field) =>
+        !fields[field] ||
+        (Array.isArray(fields[field]) && fields[field].length === 0)
+    );
+
+    if (missingFields.length > 0) {
+      console.error("Missing required fields:", missingFields);
+      return res.status(400).json({
+        message: "Validation error",
+        details: `Missing required fields: ${missingFields.join(", ")}`,
+      });
+    }
+
     console.log("Received form fields:", {
       name: fields.name,
       email: fields.email,

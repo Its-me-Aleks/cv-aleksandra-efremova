@@ -52,8 +52,12 @@ export const ContactForm = () => {
         body: formDataToSend,
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to send message");
+        throw new Error(
+          data.details || data.message || "Failed to send message"
+        );
       }
 
       setStatus({
@@ -68,9 +72,13 @@ export const ContactForm = () => {
         files: [],
       });
     } catch (error: unknown) {
+      console.error("Form submission error:", error);
       setStatus({
         type: "error",
-        message: "Failed to send message. Please try again later.",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Failed to send message. Please try again later.",
       });
     }
   };
