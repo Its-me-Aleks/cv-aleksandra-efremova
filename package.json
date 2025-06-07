@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/formidable": "^3.4.5",
     "@types/nodemailer": "^6.4.17",
+    "@vercel/node": "^5.2.1",
     "aos": "^2.3.4",
     "formidable": "^3.5.4",
     "nodemailer": "^7.0.3",
