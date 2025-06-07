@@ -7,7 +7,7 @@ export default defineConfig({
   css: {
     postcss: "./postcss.config.js",
   },
-  base: "/",
+  base: "/cv-aleksandra-efremova/",
   build: {
     outDir: "dist",
     assetsDir: "assets",

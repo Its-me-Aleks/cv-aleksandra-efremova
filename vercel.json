@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    {
+      "source": "/cv-aleksandra-efremova/assets/(.*)",
+      "destination": "/assets/$1"
+    },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
