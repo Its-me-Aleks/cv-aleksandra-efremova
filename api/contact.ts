@@ -26,15 +26,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Check if environment variables are set
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error("Missing environment variables");
+      return res.status(500).json({ message: "Server configuration error" });
+    }
+
     const form = formidable({ multiples: true });
     const [fields, files] = await new Promise<
       [formidable.Fields, formidable.Files]
     >((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
-        if (err) reject(err);
+        if (err) {
+          console.error("Form parsing error:", err);
+          reject(err);
+        }
         resolve([fields, files]);
       });
     });
+
+    console.log("Received form fields:", fields);
 
     const formData: FormData = {
       name: Array.isArray(fields.name) ? fields.name[0] : fields.name || "",
@@ -68,8 +79,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     });
 
+    // Verify transporter connection
+    try {
+      await transporter.verify();
+      console.log("SMTP connection verified");
+    } catch (error) {
+      console.error("SMTP connection error:", error);
+      return res
+        .status(500)
+        .json({ message: "Email service configuration error" });
+    }
+
     // Send email
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: "efremova_aleksandra@yahoo.com",
       subject: "New Contact Form Submission",
@@ -80,9 +102,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       })),
     });
 
+    console.log("Email sent successfully:", info);
     res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
-    console.error("Error sending email:", error);
-    res.status(500).json({ message: "Failed to send email" });
+    console.error("Error in contact form handler:", error);
+    res.status(500).json({
+      message: "Failed to send email",
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 }
