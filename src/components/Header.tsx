@@ -36,14 +36,14 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="bg-gradient-to-b from-primary-700 via-primary-100 to-white text-primary-700 py-16">
+    <header className="bg-gradient-to-b from-primary-700 via-primary-100 to-white dark:bg-gradient-to-t dark:from-gray-900 dark:via-primary-900 dark:to-primary-950 text-primary-700 dark:text-white py-16">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center">
           <div className="mb-8">
             <img
               src={profilePicture}
               alt="Aleksandra Efremova"
-              className="w-48 h-48 rounded-full mx-auto border-4 border-white shadow-lg object-cover"
+              className="w-48 h-48 rounded-full mx-auto border-4 border-white dark:border-gray-700 shadow-lg object-cover"
             />
           </div>
           <h1 className="text-4xl font-bold mb-2">Aleksandra Efremova</h1>
@@ -51,7 +51,7 @@ export const Header = () => {
           <div className="flex justify-center space-x-4 mb-6">
             <a
               href="mailto:efremova_aleksandra@yahoo.com"
-              className="hover:text-primary-500"
+              className="hover:text-primary-300 dark:hover:text-primary-400"
             >
               <FaEnvelope className="w-6 h-6" />
             </a>
@@ -59,7 +59,7 @@ export const Header = () => {
               href="https://github.com/Its-me-Aleks"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary-500"
+              className="hover:text-primary-300 dark:hover:text-primary-400"
             >
               <FaGithub className="w-6 h-6" />
             </a>
@@ -67,7 +67,7 @@ export const Header = () => {
               href="https://www.linkedin.com/in/aleksandra-efremova-aleks/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary-500"
+              className="hover:text-primary-300 dark:hover:text-primary-400"
             >
               <FaLinkedin className="w-6 h-6" />
             </a>
@@ -76,7 +76,7 @@ export const Header = () => {
             <div>
               <div className="relative">
                 <p
-                  className="cursor-pointer hover:text-primary-500"
+                  className="cursor-pointer hover:text-primary-300 dark:hover:text-primary-400"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -84,20 +84,20 @@ export const Header = () => {
                 </p>
                 {showPhoneOptions && (
                   <div
-                    className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 border border-primary-100"
+                    className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-10 border border-primary-100 dark:border-gray-700"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
                     <a
                       href={`tel:${phoneNumber}`}
-                      className="flex items-center px-4 py-2 text-primary-700 hover:bg-primary-50 hover:text-primary-500"
+                      className="flex items-center px-4 py-2 text-primary-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 hover:text-primary-500"
                     >
                       <FaPhone className="w-4 h-4 mr-2" />
                       Call
                     </a>
                     <a
                       href={`viber://chat?number=${phoneNumber}`}
-                      className="flex items-center px-4 py-2 text-primary-700 hover:bg-primary-50 hover:text-primary-500"
+                      className="flex items-center px-4 py-2 text-primary-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 hover:text-primary-500"
                     >
                       <FaViber className="w-4 h-4 mr-2" />
                       Viber
@@ -106,7 +106,7 @@ export const Header = () => {
                       href={`https://wa.me/${phoneNumber}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center px-4 py-2 text-primary-700 hover:bg-primary-50 hover:text-primary-500"
+                      className="flex items-center px-4 py-2 text-primary-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 hover:text-primary-500"
                     >
                       <FaWhatsapp className="w-4 h-4 mr-2" />
                       WhatsApp

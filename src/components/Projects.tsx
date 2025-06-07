@@ -31,22 +31,26 @@ const projects: Project[] = [
 export const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-16">
-      <h2 className="text-3xl font-bold mb-8 text-primary-700">Projects</h2>
+      <h2 className="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-400">
+        Projects
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
           >
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-primary-400">
               {project.name}
             </h3>
-            <p className="text-gray-700 mb-4">{project.description}</p>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              {project.description}
+            </p>
             <div className="flex flex-wrap gap-2 mb-4">
               {project.technologies.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm"
+                  className="bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 px-3 py-1 rounded-full text-sm"
                 >
                   {tech}
                 </span>
@@ -57,7 +61,7 @@ export const Projects: React.FC = () => {
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary-600 hover:text-primary-700"
+                className="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
               >
                 <FaExternalLinkAlt />
                 Live Demo
@@ -66,7 +70,7 @@ export const Projects: React.FC = () => {
                 href={project.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary-600 hover:text-primary-700"
+                className="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
               >
                 <FaGithub />
                 Source Code
