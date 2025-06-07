@@ -9,6 +9,7 @@ import { Footer } from "./components/Footer";
 import { FloatingButtons } from "./components/FloatingButtons";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { Projects } from "./components/Projects";
+import { Contact } from "./components/Contact";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -44,6 +45,9 @@ function App() {
         </div>
         <div data-aos="fade-up">
           <Interests />
+        </div>
+        <div data-aos="fade-up">
+          <Contact />
         </div>
       </main>
       <FloatingButtons />
