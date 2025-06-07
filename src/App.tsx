@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import { About } from "./components/About";
 import { Experience } from "./components/Experience";
@@ -14,12 +14,27 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
     });
+
+    // Simulate loading time for assets
+    window.addEventListener("load", () => {
+      setIsLoading(false);
+    });
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary-600"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
