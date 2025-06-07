@@ -2,82 +2,61 @@ import React from "react";
 
 export const Skills = () => {
   return (
-    <section className="py-8">
-      <h2 className="text-3xl font-bold mb-6 text-primary-700 dark:text-primary-400">
-        Skills
-      </h2>
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+    <section id="skills" className="py-16 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <h2 className="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-400">
+          Skills
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-xl font-semibold text-primary-700 dark:text-primary-400 mb-4">
+          {/* Technical Skills Card - Long */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+            <h3 className="text-xl font-semibold mb-4 text-primary-700 dark:text-primary-400">
               Technical Skills
             </h3>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-              <li>
-                HTML & CSS: Strong experience in building responsive and
-                accessible web pages
-              </li>
-              <li>
-                JavaScript: Proficient with DOM manipulation, event handling,
-                and modern frameworks like React
-              </li>
-              <li>
-                Email Template Development: Expertise in building responsive
-                templates with tools like Mailchimp, Salesforce, and HubSpot
-              </li>
-              <li>
-                WordPress Development: Skilled in building custom, modular, and
-                editable themes from scratch
-              </li>
-              <li>
-                QA & Testing: Knowledgeable in cross-browser and device testing
-                using tools like Browser Stack
-              </li>
-              <li>
-                SEO: Familiar with best practices, including heading tags,
-                redirects, and canonical URLs
-              </li>
-              <li>
-                Design Tools: Decent experience with Photoshop and Illustrator
-                for asset extraction and optimization
-              </li>
+            <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+              <li>HTML5 & CSS3</li>
+              <li>JavaScript (ES6+)</li>
+              <li>React.js</li>
+              <li>Tailwind CSS</li>
+              <li>Git & GitHub</li>
+              <li>Responsive Design</li>
+              <li>WordPress Development</li>
+              <li>Email Template Development</li>
+              <li>QA & Testing</li>
+              <li>SEO Best Practices</li>
+              <li>Design Tools (Photoshop, Illustrator)</li>
             </ul>
           </div>
-          <div>
-            <h3 className="text-xl font-semibold text-primary-700 dark:text-primary-400 mb-4">
-              Soft Skills
-            </h3>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-              <li>Strong communication and teamwork abilities</li>
-              <li>Excellent time management and problem-solving skills</li>
-              <li>Adaptable, quick learner, and able to work under pressure</li>
-              <li>A strong eye for design with great attention to detail</li>
-            </ul>
 
-            <h3 className="text-xl font-semibold text-primary-700 dark:text-primary-400 mt-6 mb-4">
-              Languages
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-gray-700 dark:text-gray-300">
-                <p className="font-medium">Macedonian</p>
-                <p>Native</p>
-              </div>
-              <div className="text-gray-700 dark:text-gray-300">
-                <p className="font-medium">English</p>
-                <p>Excellent</p>
-              </div>
-              <div className="text-gray-700 dark:text-gray-300">
-                <p className="font-medium">Serbian</p>
-                <p>Excellent</p>
-              </div>
-              <div className="text-gray-700 dark:text-gray-300">
-                <p className="font-medium">Bulgarian</p>
-                <p>Excellent</p>
-              </div>
-              <div className="text-gray-700 dark:text-gray-300">
-                <p className="font-medium">Croatian</p>
-                <p>Excellent</p>
-              </div>
+          {/* Right Column - Two Short Cards */}
+          <div className="space-y-6">
+            {/* Soft Skills Card */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold mb-4 text-primary-700 dark:text-primary-400">
+                Soft Skills
+              </h3>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                <li>Problem Solving</li>
+                <li>Team Collaboration</li>
+                <li>Communication</li>
+                <li>Time Management</li>
+                <li>Attention to Detail</li>
+                <li>Adaptability</li>
+              </ul>
+            </div>
+
+            {/* Languages Card */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold mb-4 text-primary-700 dark:text-primary-400">
+                Languages
+              </h3>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                <li>Macedonian (Native)</li>
+                <li>English (Fluent)</li>
+                <li>Serbian (Fluent)</li>
+                <li>Bulgarian (Fluent)</li>
+                <li>Croatian (Intermediate)</li>
+              </ul>
             </div>
           </div>
         </div>
