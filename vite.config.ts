@@ -8,4 +8,14 @@ export default defineConfig({
     postcss: "./postcss.config.js",
   },
   base: "/cv-aleksandra-efremova/",
+  build: {
+    rollupOptions: {
+      output: {
+        format: "es",
+        entryFileNames: "assets/[name]-[hash].js",
+        chunkFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash].[ext]",
+      },
+    },
+  },
 });
