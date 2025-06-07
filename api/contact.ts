@@ -110,16 +110,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       );
     }
 
-    // Create a transporter using your email service credentials
+    // Create a transporter using Gmail
     const transporter = nodemailer.createTransport({
-      host: "smtp.mail.yahoo.com",
-      port: 587,
-      secure: false,
+      service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
-      debug: true, // Enable debug logging
     });
 
     // Verify transporter connection
