@@ -7,11 +7,13 @@ export default defineConfig({
   css: {
     postcss: "./postcss.config.js",
   },
-  base: "/cv-aleksandra-efremova/",
+  base: "/",
   build: {
+    outDir: "dist",
+    assetsDir: "assets",
     rollupOptions: {
       output: {
-        format: "es",
+        manualChunks: undefined,
         entryFileNames: "assets/[name]-[hash].js",
         chunkFileNames: "assets/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash].[ext]",
