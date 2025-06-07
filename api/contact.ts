@@ -21,6 +21,9 @@ interface FormData {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Set JSON content type for all responses
+  res.setHeader("Content-Type", "application/json");
+
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
