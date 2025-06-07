@@ -33,6 +33,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.log("Environment check:", {
       hasEmailUser: !!process.env.EMAIL_USER,
       hasEmailPass: !!process.env.EMAIL_PASS,
+      nodeEnv: process.env.NODE_ENV,
     });
 
     // Check if environment variables are set
@@ -47,6 +48,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const form = formidable({
       multiples: true,
       maxFileSize: 5 * 1024 * 1024, // 5MB limit
+      keepExtensions: true,
     });
 
     const [fields, files] = await new Promise<
@@ -117,6 +119,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      debug: true, // Enable debug logging
     });
 
     // Verify transporter connection
