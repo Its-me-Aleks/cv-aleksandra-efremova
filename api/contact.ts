@@ -26,13 +26,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Log environment variables (without sensitive data)
+    console.log("Environment check:", {
+      hasEmailUser: !!process.env.EMAIL_USER,
+      hasEmailPass: !!process.env.EMAIL_PASS,
+    });
+
     // Check if environment variables are set
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.error("Missing environment variables");
-      return res.status(500).json({ message: "Server configuration error" });
+      return res.status(500).json({
+        message: "Server configuration error",
+        details: "Email configuration is missing",
+      });
     }
 
-    const form = formidable({ multiples: true });
+    const form = formidable({
+      multiples: true,
+      maxFileSize: 5 * 1024 * 1024, // 5MB limit
+    });
+
     const [fields, files] = await new Promise<
       [formidable.Fields, formidable.Files]
     >((resolve, reject) => {
@@ -45,7 +58,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     });
 
-    console.log("Received form fields:", fields);
+    console.log("Received form fields:", {
+      name: fields.name,
+      email: fields.email,
+      subject: fields.subject,
+      hasMessage: !!fields.message,
+      hasFiles: !!files.files,
+    });
 
     const formData: FormData = {
       name: Array.isArray(fields.name) ? fields.name[0] : fields.name || "",
@@ -72,7 +91,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Create a transporter using your email service credentials
     const transporter = nodemailer.createTransport({
-      service: "yahoo",
+      host: "smtp.mail.yahoo.com",
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -85,9 +106,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       console.log("SMTP connection verified");
     } catch (error) {
       console.error("SMTP connection error:", error);
-      return res
-        .status(500)
-        .json({ message: "Email service configuration error" });
+      return res.status(500).json({
+        message: "Email service configuration error",
+        details: error instanceof Error ? error.message : "Unknown SMTP error",
+      });
     }
 
     // Send email
@@ -108,7 +130,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error("Error in contact form handler:", error);
     res.status(500).json({
       message: "Failed to send email",
-      error: error instanceof Error ? error.message : "Unknown error",
+      details: error instanceof Error ? error.message : "Unknown error",
     });
   }
 }
