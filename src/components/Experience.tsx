@@ -15,7 +15,7 @@ export const Experience = () => {
             Kodeo | Skopje, North Macedonia
           </p>
           <p className="text-gray-700 dark:text-gray-300">
-            December 2023 - Present
+            December 2024 - Present
           </p>
           <ul className="list-disc list-inside mt-2 text-gray-700 dark:text-gray-300">
             <li>Develop and optimize responsive email templates</li>
