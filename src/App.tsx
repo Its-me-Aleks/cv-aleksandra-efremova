@@ -22,10 +22,9 @@ function App() {
       once: true,
     });
 
-    // Simulate loading time for assets
-    window.addEventListener("load", () => {
-      setIsLoading(false);
-    });
+    // Use a timeout to hide the spinner after 500ms
+    const timeout = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timeout);
   }, []);
 
   if (isLoading) {
