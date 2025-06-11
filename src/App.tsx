@@ -28,30 +28,8 @@ function App() {
       disable: false,
     });
 
-    // Use requestAnimationFrame for smoother loading state
-    const handleLoad = () => {
-      requestAnimationFrame(() => {
-        setIsLoading(false);
-        console.log("Loading complete");
-      });
-    };
-
-    // Fallback: if load event doesn't fire within 5 seconds, force loading to complete
-    const fallbackTimer = setTimeout(() => {
-      setIsLoading(false);
-      console.log("Fallback timer triggered");
-    }, 5000);
-
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-    }
-
-    return () => {
-      window.removeEventListener("load", handleLoad);
-      clearTimeout(fallbackTimer);
-    };
+    // Force loading to complete immediately
+    setIsLoading(false);
   }, []);
 
   if (isLoading) {
