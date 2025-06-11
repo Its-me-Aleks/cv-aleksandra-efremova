@@ -3,14 +3,21 @@ import { FaArrowUp, FaDownload } from "react-icons/fa";
 
 export const FloatingButtons: React.FC = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [showDownload, setShowDownload] = useState(false);
   const [downloadError, setDownloadError] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 300);
+      // Show Download button only at the bottom
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+      setShowDownload(atBottom);
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -46,18 +53,20 @@ export const FloatingButtons: React.FC = () => {
           <FaArrowUp className="w-6 h-6" />
         </button>
       )}
-      <button
-        onClick={handleDownload}
-        className="bg-primary-500 text-white p-3 rounded-full shadow-lg hover:bg-primary-600 transition-colors duration-200 relative"
-        aria-label="Download CV"
-      >
-        <FaDownload className="w-6 h-6" />
-        {downloadError && (
-          <div className="absolute bottom-full right-0 mb-2 bg-red-500 text-white px-3 py-1 rounded text-sm whitespace-nowrap">
-            PDF not found
-          </div>
-        )}
-      </button>
+      {showDownload && (
+        <button
+          onClick={handleDownload}
+          className="bg-primary-500 text-white p-3 rounded-full shadow-lg hover:bg-primary-600 transition-colors duration-200 relative"
+          aria-label="Download CV"
+        >
+          <FaDownload className="w-6 h-6" />
+          {downloadError && (
+            <div className="absolute bottom-full right-0 mb-2 bg-red-500 text-white px-3 py-1 rounded text-sm whitespace-nowrap">
+              PDF not found
+            </div>
+          )}
+        </button>
+      )}
     </div>
   );
 };
