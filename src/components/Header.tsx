@@ -46,7 +46,7 @@ export const Header = () => {
           <div className="mb-8">
             <img
               src={profilePicture}
-              alt="Aleksandra Efremova"
+              alt="Aleksandra Efremova profile picture"
               className="w-48 h-48 rounded-full mx-auto border-4 border-white dark:border-gray-700 shadow-lg object-cover"
             />
           </div>
@@ -56,6 +56,7 @@ export const Header = () => {
             <a
               href="mailto:efremova_aleksandra@yahoo.com"
               className="hover:text-primary-300 dark:hover:text-primary-400"
+              aria-label="Send email to Aleksandra Efremova"
             >
               <FaEnvelope className="w-6 h-6" />
             </a>
@@ -64,6 +65,7 @@ export const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary-300 dark:hover:text-primary-400"
+              aria-label="Aleksandra Efremova on GitHub"
             >
               <FaGithub className="w-6 h-6" />
             </a>
@@ -72,6 +74,7 @@ export const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary-300 dark:hover:text-primary-400"
+              aria-label="Aleksandra Efremova on LinkedIn"
             >
               <FaLinkedin className="w-6 h-6" />
             </a>

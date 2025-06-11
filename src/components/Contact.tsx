@@ -7,6 +7,8 @@ export const Contact: React.FC = () => {
       id="contact"
       className="py-16 bg-gray-50 dark:bg-gray-900"
       aria-labelledby="contact-heading"
+      role="region"
+      aria-label="Contact section"
     >
       <div className="container mx-auto px-4 max-w-4xl">
         <h2
