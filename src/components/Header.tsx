@@ -12,28 +12,32 @@ import profilePicture from "../assets/profile-picture.jpg";
 export const Header = () => {
   const [showPhoneOptions, setShowPhoneOptions] = useState(false);
   const phoneNumber = "+38971232040"; // Remove spaces for direct links
-  const timeoutRef = useRef<number>();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setShowPhoneOptions(true);
+  // Toggle dropdown on phone click
+  const handlePhoneClick = () => {
+    setShowPhoneOptions((prev) => !prev);
   };
 
-  const handleMouseLeave = () => {
-    timeoutRef.current = window.setTimeout(() => {
-      setShowPhoneOptions(false);
-    }, 300); // 300ms delay before hiding
-  };
-
+  // Close dropdown if clicking outside
   useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowPhoneOptions(false);
       }
     };
-  }, []);
+    if (showPhoneOptions) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showPhoneOptions]);
 
   return (
     <header className="bg-gradient-to-b from-primary-700 via-primary-100 to-white dark:bg-gradient-to-t dark:from-gray-900 dark:via-primary-900 dark:to-primary-950 text-primary-700 dark:text-white py-16">
@@ -74,20 +78,15 @@ export const Header = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-2xl mx-auto">
             <div>
-              <div className="relative">
+              <div className="relative" ref={dropdownRef}>
                 <p
                   className="cursor-pointer hover:text-primary-300 dark:hover:text-primary-400"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  onClick={handlePhoneClick}
                 >
                   <strong>Phone:</strong> +389 71 232040
                 </p>
                 {showPhoneOptions && (
-                  <div
-                    className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-10 border border-primary-100 dark:border-gray-700"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
+                  <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-10 border border-primary-100 dark:border-gray-700">
                     <a
                       href={`tel:${phoneNumber}`}
                       className="flex items-center px-4 py-2 text-primary-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 hover:text-primary-500"
