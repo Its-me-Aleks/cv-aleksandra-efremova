@@ -5,9 +5,20 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-gray-50 text-gray-900;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ensure proper mobile viewport handling */
+  @media (max-width: 640px) {
+    html {
+      font-size: 16px;
+    }
   }
 }

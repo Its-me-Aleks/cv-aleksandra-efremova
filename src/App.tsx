@@ -17,15 +17,30 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Initialize AOS with optimized settings
     AOS.init({
-      duration: 1000,
+      duration: 800,
       once: true,
+      startEvent: "DOMContentLoaded",
+      offset: 50,
+      delay: 0,
+      easing: "ease-out-cubic",
+      disable: false,
     });
 
-    // Simulate loading time for assets
-    window.addEventListener("load", () => {
-      setIsLoading(false);
-    });
+    // Use requestAnimationFrame for smoother loading state
+    const handleLoad = () => {
+      requestAnimationFrame(() => {
+        setIsLoading(false);
+      });
+    };
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
   }, []);
 
   if (isLoading) {
@@ -42,26 +57,26 @@ function App() {
         <ThemeToggle />
       </div>
       <Header />
-      <main className="container mx-auto px-4 py-8">
-        <div data-aos="fade-up">
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div data-aos="fade-up" data-aos-duration="800">
           <About />
         </div>
-        <div data-aos="fade-up">
+        <div data-aos="fade-up" data-aos-duration="800">
           <Experience />
         </div>
-        <div data-aos="fade-up">
+        <div data-aos="fade-up" data-aos-duration="800">
           <Education />
         </div>
-        <div data-aos="fade-up">
+        <div data-aos="fade-up" data-aos-duration="800">
           <Skills />
         </div>
-        <div data-aos="fade-up">
+        <div data-aos="fade-up" data-aos-duration="800">
           <Projects />
         </div>
-        <div data-aos="fade-up">
+        <div data-aos="fade-up" data-aos-duration="800">
           <Interests />
         </div>
-        <div data-aos="fade-up">
+        <div data-aos="fade-up" data-aos-duration="800">
           <Contact />
         </div>
       </main>

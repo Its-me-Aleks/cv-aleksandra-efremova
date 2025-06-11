@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://its-me-aleks.github.io/cv-aleksandra-efremova/sitemap.xml
+Sitemap: https://cv-aleksandra-efremova.vercel.app/sitemap.xml 

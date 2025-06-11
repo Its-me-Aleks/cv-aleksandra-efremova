@@ -62,6 +62,12 @@ export const Projects: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    window.open(project.demoUrl, "_blank");
+                  }
+                }}
               >
                 <FaExternalLinkAlt />
                 Live Demo
@@ -71,6 +77,12 @@ export const Projects: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    window.open(project.sourceUrl, "_blank");
+                  }
+                }}
               >
                 <FaGithub />
                 Source Code

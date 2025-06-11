@@ -1,39 +1,29 @@
 {
-  "rewrites": [
+  "name": "cv-aleksandra-efremova",
+  "version": 2,
+  "builds": [
     {
-      "source": "/cv-aleksandra-efremova/assets/(.*)",
-      "destination": "/assets/$1"
-    },
-    { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)\\.js",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)\\.css",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css"
-        }
-      ]
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
-  ]
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_CONTACT_EMAIL": "@vite_contact_email",
+    "VITE_PHONE_NUMBER": "@vite_phone_number",
+    "VITE_LOCATION": "@vite_location",
+    "VITE_GITHUB_URL": "@vite_github_url",
+    "VITE_LINKEDIN_URL": "@vite_linkedin_url",
+    "VITE_SITE_URL": "@vite_site_url",
+    "VITE_SITE_NAME": "@vite_site_name",
+    "VITE_SITE_DESCRIPTION": "@vite_site_description"
+  }
 }

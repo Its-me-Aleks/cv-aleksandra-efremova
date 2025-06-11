@@ -1,5 +1,6 @@
 import React from "react";
 import { FaEnvelope } from "react-icons/fa";
+import { config } from "../config";
 
 export const Contact: React.FC = () => {
   return (
@@ -25,13 +26,19 @@ export const Contact: React.FC = () => {
             opportunities to be part of your vision.
           </p>
           <a
-            href="mailto:efremova_aleksandra@yahoo.com"
+            href={`mailto:${config.contact.email}`}
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 text-lg font-medium transition-colors"
-            aria-label="Send email to efremova_aleksandra@yahoo.com"
+            aria-label={`Send email to ${config.contact.email}`}
             rel="noopener noreferrer"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                window.location.href = `mailto:${config.contact.email}`;
+              }
+            }}
           >
             <FaEnvelope aria-hidden="true" />
-            <span>efremova_aleksandra@yahoo.com</span>
+            <span>{config.contact.email}</span>
           </a>
         </div>
       </div>

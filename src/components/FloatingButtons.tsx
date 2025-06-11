@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FaArrowUp, FaDownload } from "react-icons/fa";
 
 export const FloatingButtons: React.FC = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [downloadError, setDownloadError] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
+  // Throttle scroll handler
+  const handleScroll = useCallback(() => {
+    if (!window.requestAnimationFrame) {
       setShowBackToTop(window.scrollY > 300);
-    };
+      return;
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.requestAnimationFrame(() => {
+      setShowBackToTop(window.scrollY > 300);
+    });
   }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
