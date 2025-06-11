@@ -7,10 +7,7 @@ export default defineConfig({
   css: {
     postcss: "./postcss.config.js",
   },
-  base:
-    process.env.NODE_ENV === "production" && process.env.VERCEL !== "1"
-      ? "/cv-aleksandra-efremova/"
-      : "/",
+  base: "/",
   build: {
     outDir: "dist",
     assetsDir: "assets",
