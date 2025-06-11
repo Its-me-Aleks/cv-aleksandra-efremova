@@ -12,35 +12,28 @@ import profilePicture from "../assets/profile-picture.jpg";
 export const Header = () => {
   const [showPhoneOptions, setShowPhoneOptions] = useState(false);
   const phoneNumber = "+38971232040"; // Remove spaces for direct links
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<number>();
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        // Add a small delay before closing
-        timeoutRef.current = window.setTimeout(() => {
-          setShowPhoneOptions(false);
-        }, 100);
-      }
-    };
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setShowPhoneOptions(true);
+  };
 
-    document.addEventListener("mousedown", handleClickOutside);
+  const handleMouseLeave = () => {
+    timeoutRef.current = window.setTimeout(() => {
+      setShowPhoneOptions(false);
+    }, 300); // 300ms delay before hiding
+  };
+
+  useEffect(() => {
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
     };
   }, []);
-
-  const togglePhoneOptions = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent event bubbling
-    setShowPhoneOptions(!showPhoneOptions);
-  };
 
   return (
     <header className="bg-gradient-to-b from-primary-700 via-primary-100 to-white dark:bg-gradient-to-t dark:from-gray-900 dark:via-primary-900 dark:to-primary-950 text-primary-700 dark:text-white py-16">
@@ -81,19 +74,19 @@ export const Header = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-2xl mx-auto">
             <div>
-              <div className="relative" ref={dropdownRef}>
-                <button
-                  className="cursor-pointer hover:text-primary-300 dark:hover:text-primary-400 bg-transparent border-none p-0 text-left w-full"
-                  onClick={togglePhoneOptions}
-                  aria-expanded={showPhoneOptions}
-                  aria-haspopup="true"
+              <div className="relative">
+                <p
+                  className="cursor-pointer hover:text-primary-300 dark:hover:text-primary-400"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   <strong>Phone:</strong> +389 71 232040
-                </button>
+                </p>
                 {showPhoneOptions && (
                   <div
                     className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-10 border border-primary-100 dark:border-gray-700"
-                    onClick={(e) => e.stopPropagation()}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <a
                       href={`tel:${phoneNumber}`}
