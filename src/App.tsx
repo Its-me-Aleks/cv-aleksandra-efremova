@@ -35,11 +35,19 @@ function App() {
       });
     };
 
+    // Fallback: if load event doesn't fire within 5 seconds, force loading to complete
+    const fallbackTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+
     if (document.readyState === "complete") {
       handleLoad();
     } else {
       window.addEventListener("load", handleLoad);
-      return () => window.removeEventListener("load", handleLoad);
+      return () => {
+        window.removeEventListener("load", handleLoad);
+        clearTimeout(fallbackTimer);
+      };
     }
   }, []);
 
