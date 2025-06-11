@@ -17,7 +17,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize AOS with optimized settings
+    // Initialize AOS with optimized settings for mobile
     AOS.init({
       duration: 800,
       once: true,
@@ -25,11 +25,22 @@ function App() {
       offset: 50,
       delay: 0,
       easing: "ease-out-cubic",
-      disable: false,
+      disable: window.innerWidth < 768, // Disable on mobile for better performance
     });
 
-    // Force loading to complete immediately
-    setIsLoading(false);
+    // Use requestAnimationFrame to ensure smooth loading state transition
+    requestAnimationFrame(() => {
+      setIsLoading(false);
+    });
+
+    // Fallback timer to ensure loading state is cleared
+    const fallbackTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   if (isLoading) {

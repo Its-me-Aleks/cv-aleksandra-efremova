@@ -38,5 +38,13 @@ export default defineConfig({
         assetFileNames: "assets/[name]-[hash].[ext]",
       },
     },
+    sourcemap: true,
+    chunkSizeWarningLimit: 1000,
+  },
+  server: {
+    host: true,
+    port: 3000,
+    strictPort: true,
+    open: true,
   },
 });
